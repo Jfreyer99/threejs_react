@@ -10,11 +10,19 @@ background-color: #000000;
 }
 
 #header{
-  
+  display: flex;
+  padding: 10px;
+  justify-content:center;
+  align-items:center;
+  background-color: #669458
 }
 
 #footer{
-
+  display: flex;
+  padding: 10px;
+  justify-content:center;
+  align-items:center;
+  background-color: #6179b6;
 }
 
 #editorWrapper{
@@ -32,7 +40,9 @@ background-color: #000000;
 
 #editor{
   display: flex;
+  justify-content:center;
+  align-items:center;
   width: 40vw;
   height: 100vh;
-  background-color: aquamarine;
+  background-color: #669458;
 }
