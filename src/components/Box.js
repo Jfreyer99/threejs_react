@@ -1,13 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
-const Box = ({ getMesh, first }) => {
+const Box = ({ getMesh }) => {
     const mesh = useRef();
-
-    useEffect(() => {
-        if (first) {
-            click();
-        }
-    }, []);
 
     const click = (e) => {
         getMesh(mesh);
