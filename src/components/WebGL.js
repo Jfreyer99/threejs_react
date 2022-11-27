@@ -55,8 +55,7 @@ const WebGL = () => {
         >
             <gridHelper args={[25, 25]}></gridHelper>
 
-            {/* <ambientLight intensity={1.25} />
-            <ambientLight intensity={0.1} /> */}
+            <ambientLight intensity={0.1} />
             <directionalLight intensity={0.9} />
 
             <OrbitControls ref={orbitControls} makeDefault={true} />

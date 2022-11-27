@@ -22,7 +22,7 @@ const Course = ({ getMesh }) => {
     return (
         <group onClick={(e) => click(e)} ref={group} dispose={null}>
             {geometrys.map((geo, index) =>
-                <mesh key={index} geometry={geo} material={materials.Green} rotation={[-Math.PI / 2, 0, 0]} scale={[3, 3, 3]}></mesh>
+                <mesh key={index} geometry={geo} material={materials.Green} rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}></mesh>
             )}
         </group>
 
