@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, TransformControls } from '@react-three/drei';
 
+
 import Box from './Box'
+import Course from './Course'
 
 const WebGL = () => {
     const orbitControls = useRef();
@@ -36,14 +38,11 @@ const WebGL = () => {
         if (mesh !== currentMesh) {
             setCurrentMesh(mesh);
             transformControls.current.attach(mesh.current)
-            orbitControls.current.attach(mesh.current)
             console.log("Transform", transformControls.current);
-            console.log(mesh);
         }
     }
     const objectChanged = (e) => {
-        setCameraPosition(e.target.positionStart)
-        console.log(cameraPosition)
+        //setCameraPosition(e.target.positionStart)
     }
 
     return (
@@ -54,21 +53,21 @@ const WebGL = () => {
             onKeyDown={(e) => getMode(e)}
             onClick={(e) => clickOnCanvas(e)}
         >
-            <gridHelper args={[100, 100]}></gridHelper>
+            <gridHelper args={[25, 25]}></gridHelper>
 
-            <ambientLight intensity={1.25} />
-            <ambientLight intensity={0.1} />
-            <directionalLight intensity={0.4} />
+            {/* <ambientLight intensity={1.25} />
+            <ambientLight intensity={0.1} /> */}
+            <directionalLight intensity={0.9} />
 
             <OrbitControls ref={orbitControls} makeDefault={true} />
 
-            <Box getMesh={getMesh}></Box>
-            <Box getMesh={getMesh}></Box>
-            <Box getMesh={getMesh}></Box>
+            <Course getMesh={getMesh}></Course>
 
             <TransformControls onObjectChange={(e) => objectChanged(e)} ref={transformControls} mode={mode} />
         </Canvas >
     );
 }
-
+//<Box getMesh={getMesh}></Box>
+//<Box getMesh={getMesh}></Box>
+// <Box getMesh={getMesh}></Box>
 export default WebGL;

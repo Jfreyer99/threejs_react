@@ -1,0 +1,70 @@
+{
+  "asset": { "generator": "3D Builder", "version": "2.0" },
+  "scene": 0,
+  "scenes": [{ "nodes": [0] }],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "mesh",
+      "matrix": [
+        9.2383451461792, 0, 0, 0, 0, -1.0580732805465232e-6,
+        -8.8757610321044922, 0, 0, 0.036021657288074493, -4.2941166178422918e-9,
+        0, -0.03738432377576828, -0.00036263916990719736, 0.55915564298629761, 1
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": { "POSITION": 0 },
+          "mode": 4,
+          "indices": 1,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Green",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.015208514407277107, 0.49693304300308228, 0.072271861135959625, 1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "count": 8,
+      "componentType": 5126,
+      "type": "VEC3",
+      "min": [0, 0.042998004704713821, 0],
+      "max": [0.039998002350330353, 0.082998007535934448, 0.039998002350330353]
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 0,
+      "count": 36,
+      "componentType": 5125,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 96,
+      "byteStride": 12,
+      "target": 34962
+    },
+    { "buffer": 0, "byteOffset": 96, "byteLength": 144, "target": 34963 }
+  ],
+  "buffers": [{ "byteLength": 240, "uri": "Plane.bin" }]
+}
