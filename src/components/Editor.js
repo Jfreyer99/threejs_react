@@ -1,16 +1,30 @@
 import React from 'react';
 
+import EditorObstacle from './EditorObstacle';
+
 const Editor = ({ getFilename }) => {
 
-    const obstacleClick = (e, filename) => {
-        getFilename({ filename: filename, event: e });
+    const obstacleClick = (obj) => {
+        getFilename(obj);
     }
 
     return (
         <>
-            <div onClick={(e) => obstacleClick(e, '/obstacels/wall_with_hole.gltf')} className='obstacle'> Hello </div>
-            <div onClick={(e) => obstacleClick(e, '/obstacels/pyramid.gltf')} className='obstacle'> Hello </div>
-            <div onClick={(e) => obstacleClick(e, '/obstacels/pyramid.gltf')} className='obstacle'> Hello </div>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/pyramid.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/pyramid.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/pyramid.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/pyramid.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/pyramid.gltf'></EditorObstacle>
+            <EditorObstacle getObstacle={obstacleClick} filename='/obstacels/wall_with_hole.gltf'></EditorObstacle>
         </>
     )
 }

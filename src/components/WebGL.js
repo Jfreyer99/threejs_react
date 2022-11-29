@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, TransformControls } from '@react-three/drei';
-import { Environment } from '@react-three/drei'
+import { OrbitControls, TransformControls, Environment } from '@react-three/drei';
 
 import Box from './Box'
 import Model from './GLTF_Model'

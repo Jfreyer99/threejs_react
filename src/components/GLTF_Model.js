@@ -23,7 +23,6 @@ const Model = ({ getMesh, filename }) => {
 
     if (arrayNodes.length === 1) { geometrys[0].center(); }
 
-
     return (
         <group onClick={(e) => click(e)} ref={group} dispose={null}>
             {geometrys.map((geo, index) =>

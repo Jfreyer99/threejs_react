@@ -7,10 +7,9 @@ const EditorWrapper = () => {
 
     const [currentFileName, setCurrentFileName] = useState({ filename: '', event: null });
 
-    const getFilename = ({ filename, event }) => {
-        setCurrentFileName({ filename, event });
+    const getFilename = (obj) => {
+        setCurrentFileName({ filename: obj.filename.filename, event: obj.event.event });
     }
-
 
     return (
         <div id="editorWrapper">
