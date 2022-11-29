@@ -41,7 +41,7 @@ background-color: #000000;
 #editor{
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content:start;
   width: 40vw;
   height: 100vh;
   background-color: #669458;
@@ -49,11 +49,50 @@ background-color: #000000;
 
 .obstacle{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  border: 1px solid black;
-  border-radius: 10px;
+  height: 20%;
+  width: 20%;
   margin-left: 2%;
+}
+
+.obstacleWrapper{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.obstacleImage{
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  border: 1px solid white;
+}
+
+.obstacleName{
+  opacity: 0.9;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 0px 0px 10px 10px;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  height: 10%;
+}
+
+.obstacle:hover{
+  animation-name: obstacle;
+  animation-timing-function: ease;
+  animation-duration: 0.2s;
+}
+
+@keyframes obstacle {
+0%   {   
+  height: 20%;
+  width: 20%; 
+}
+50% {  height: 20.5%;
+  width: 20.5%;  
+}
+100% {  height: 20%;
+  width: 20%; }
 }

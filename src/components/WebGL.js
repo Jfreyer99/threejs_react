@@ -80,7 +80,5 @@ const WebGL = ({ filenameObj }) => {
         </Canvas >
     );
 }
-//<Model getMesh={getMesh} filename='/course_standard.gltf'></Model>
-//<Model getMesh={getMesh} filename='/obstacels/wall_with_hole.gltf'></Model>
-//<Model getMesh={getMesh} filename='/obstacels/pyramid.gltf'></Model>
+
 export default WebGL;
