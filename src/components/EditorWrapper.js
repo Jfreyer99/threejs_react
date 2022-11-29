@@ -1,16 +1,24 @@
 import React from 'react'
-
+import { useState } from 'react';
 import Editor from './Editor'
 import WebGL from './WebGL'
 
 const EditorWrapper = () => {
+
+    const [currentFileName, setCurrentFileName] = useState({ filename: '', event: null });
+
+    const getFilename = ({ filename, event }) => {
+        setCurrentFileName({ filename, event });
+    }
+
+
     return (
         <div id="editorWrapper">
             <div id="webgl">
-                <WebGL></WebGL>
+                <WebGL filenameObj={currentFileName}></WebGL>
             </div>
             <div id="editor">
-                <Editor></Editor>
+                <Editor getFilename={getFilename}></Editor>
             </div>
         </div>
     )

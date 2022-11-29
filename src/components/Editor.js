@@ -1,10 +1,16 @@
 import React from 'react';
 
-const Editor = () => {
+const Editor = ({ getFilename }) => {
+
+    const obstacleClick = (e, filename) => {
+        getFilename({ filename: filename, event: e });
+    }
 
     return (
         <>
-            Das ist der Editor
+            <div onClick={(e) => obstacleClick(e, '/obstacels/wall_with_hole.gltf')} className='obstacle'> Hello </div>
+            <div onClick={(e) => obstacleClick(e, '/obstacels/pyramid.gltf')} className='obstacle'> Hello </div>
+            <div onClick={(e) => obstacleClick(e, '/obstacels/pyramid.gltf')} className='obstacle'> Hello </div>
         </>
     )
 }

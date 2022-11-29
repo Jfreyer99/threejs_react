@@ -1,0 +1,90 @@
+{
+  "asset": { "generator": "3D Builder", "version": "2.0" },
+  "scene": 0,
+  "scenes": [{ "nodes": [0] }],
+  "nodes": [
+    {
+      "mesh": 0,
+      "matrix": [
+        1, 0, 0, 0, 0, -1.1920928955078125e-7, -0.99999988079071045, 0, 0,
+        0.99999988079071045, -1.1920928955078125e-7, 0, 0, 0, 0, 1
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": { "POSITION": 0 },
+          "mode": 4,
+          "indices": 2,
+          "material": 0
+        },
+        {
+          "attributes": { "POSITION": 1 },
+          "mode": 4,
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Green",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.015208514407277107, 0.49693304300308228, 0.072271861135959625, 1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "count": 327,
+      "componentType": 5126,
+      "type": "VEC3",
+      "min": [-0.064349502325057983, 0.015661343932151794, 0],
+      "max": [0.13565051555633545, 0.019999982789158821, 0.039997998625040054]
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 3924,
+      "count": 528,
+      "componentType": 5126,
+      "type": "VEC3",
+      "min": [0.01565050333738327, 0.015661343932151794, 0],
+      "max": [0.055650509893894196, 0.019999982789158821, 0.036109175533056259]
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 0,
+      "count": 999,
+      "componentType": 5125,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 3996,
+      "count": 2205,
+      "componentType": 5125,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 10260,
+      "byteStride": 12,
+      "target": 34962
+    },
+    { "buffer": 0, "byteOffset": 10260, "byteLength": 12816, "target": 34963 }
+  ],
+  "buffers": [{ "byteLength": 23076, "uri": "wall_with_hole.bin" }]
+}

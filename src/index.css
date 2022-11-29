@@ -41,8 +41,18 @@ background-color: #000000;
 #editor{
   display: flex;
   justify-content:center;
-  align-items:center;
   width: 40vw;
   height: 100vh;
   background-color: #669458;
+}
+
+.obstacle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vw;
+  width: 10vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 2%;
 }
