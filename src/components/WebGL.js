@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+import uuid from 'react-uuid';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, TransformControls, Environment } from '@react-three/drei';
-import uuid from 'react-uuid';
 
 import Box from './Box'
 import Model from './GLTF_Model'
 import Plane from './Plane'
 
-const WebGL = ({ filenameObj, getShapesOnCanvas }) => {
+const WebGL = ({ filenameObj, shapesOnCanvas, setShapesOnCanvas }) => {
 
     const [mode, setMode] = useState('translate');
 
@@ -22,16 +22,17 @@ const WebGL = ({ filenameObj, getShapesOnCanvas }) => {
 
     const [cameraPosition, setCameraPosition] = useState([5, 5, 5]);
 
-    const [shapesOnCanvas, setShapesOnCanvas] = useState([<Model key={uuid()} receiveShadow filename='/course_standard.gltf'></Model>]);
+    useEffect(() => {
+        setShapesOnCanvas([...shapesOnCanvas]);
+    }, [])
 
     useEffect(() => {
         //Construct Model here
         if (filenameObj.filename !== '') {
-            setShapesOnCanvas([...shapesOnCanvas, <Model key={uuid()} getMesh={getMesh} filename={filenameObj.filename}></Model>]);
-            getShapesOnCanvas(shapesOnCanvas);
+            const name = filenameObj.filename.split('/').pop().split('.')[0];
+            setShapesOnCanvas([...shapesOnCanvas, <Model key={uuid()} name={name} getMesh={getMesh} filename={filenameObj.filename}></Model>]);
         }
     }, [filenameObj])
-
 
     const orbitControls = useRef();
     const transformControls = useRef();
@@ -61,6 +62,7 @@ const WebGL = ({ filenameObj, getShapesOnCanvas }) => {
 
     return (
         <Canvas
+
             camera={{ position: cameraPosition }}
             id="canvas"
             tabIndex="0"
@@ -68,13 +70,13 @@ const WebGL = ({ filenameObj, getShapesOnCanvas }) => {
             onClick={(e) => clickOnCanvas(e)}
         >
 
-
             <gridHelper args={[8, 8]}></gridHelper>
+            <Plane></Plane>
+            <Model key={uuid()} receiveShadow getMesh={getMesh} filename='/course_standard.gltf'></Model>
             <directionalLight castShadow shadow-mapSize-height={512}
-                intensity={1} />
-
+                shadow-mapSize-width={512} intensity={1} />
             <OrbitControls ref={orbitControls} makeDefault={true} />
-            <Plane sizeX='10' sizeY='10'></Plane>
+
             {[...shapesOnCanvas]}
 
             <Environment preset="forest" background blur={0.5} />

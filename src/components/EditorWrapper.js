@@ -5,24 +5,20 @@ import WebGL from './WebGL'
 const EditorWrapper = () => {
 
     const [currentFileName, setCurrentFileName] = useState({ filename: '', event: null });
-    const [editorShapes, setEditorShapes] = useState([]);
+
+    const [shapesOnCanvas, setShapesOnCanvas] = useState([]);
 
     const getFilename = (obj) => {
         setCurrentFileName({ filename: obj.filename.filename, event: obj.event.event });
     }
 
-
-    const getShapesOnCanvas = (shapes) => {
-        setEditorShapes(shapes);
-    }
-
     return (
         <div id="editorWrapper">
             <div id="webgl">
-                <WebGL getShapesOnCanvas={getShapesOnCanvas} filenameObj={currentFileName}></WebGL>
+                <WebGL shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas} filenameObj={currentFileName}></WebGL>
             </div>
             <div id="editor">
-                <Editor editorShapes={editorShapes} getFilename={getFilename}></Editor>
+                <Editor shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas} getFilename={getFilename}></Editor>
             </div>
         </div>
     )
