@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei'
+import uuid from 'react-uuid';
 
 const Model = ({ getMesh, filename }) => {
     const group = useRef();
@@ -8,7 +9,9 @@ const Model = ({ getMesh, filename }) => {
     const [material, setMaterial] = useState([]);
 
     const click = (e) => {
-        getMesh(group);
+        if (filename !== '/course_standard.gltf') {
+            getMesh(group);
+        }
     }
 
     const { nodes } = useGLTF(filename);
@@ -24,12 +27,13 @@ const Model = ({ getMesh, filename }) => {
     if (arrayNodes.length === 1) { geometrys[0].center(); }
 
     return (
-        <group onClick={(e) => click(e)} ref={group} dispose={null}>
+        <group key={uuid()} onClick={(e) => click(e)} ref={group} dispose={null}>
             {geometrys.map((geo, index) =>
-                <mesh key={index} geometry={geo} material={material[index]} rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
+                <mesh castShadow receiveShadow key={uuid()} geometry={geo} material={material[index]} rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
                 </mesh>
             )}
         </group>
     );
 }
+
 export default Model;
