@@ -31,7 +31,8 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
             const meshToRemove = groups.filter(ele => ele.current.number === key)[0].current;
             const meshesNew = groups.filter(ele => ele.current !== meshToRemove);
             setGroups(meshesNew);
-            console.log(meshesNew[meshesNew.length - 1]);
+
+            //Set new currentMesh
             setCurrentMesh(meshesNew[meshesNew.length - 1]);
         }
     }

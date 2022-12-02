@@ -66,7 +66,7 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh 
                 maxAzimuthAngle={undefined}
                 minPolarAngle={-Math.PI}
                 maxPolarAngle={Math.PI / 2}
-                ref={orbitControls} makeDefault={true} />
+                ref={orbitControls} makeDefault={true} camera={null} />
 
             {[...shapesOnCanvas]}
 

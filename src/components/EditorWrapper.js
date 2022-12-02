@@ -17,11 +17,6 @@ const EditorWrapper = () => {
         }
     }
 
-    const getKeyFromClick = (key) => {
-        const wantedElement = shapesOnCanvas.filter(ele => ele.key === key).pop();
-        console.log(wantedElement);
-    }
-
     useEffect(() => {
         //Construct Model here
         if (currentFileName.filename !== '') {
@@ -42,7 +37,7 @@ const EditorWrapper = () => {
                 <WebGL currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas}></WebGL>
             </div>
             <div id="editor">
-                <Editor groups={groups} setGroups={setGroups} getKeyFromClick={getKeyFromClick} currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas} getFilename={getFilename}></Editor>
+                <Editor groups={groups} setGroups={setGroups} currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas} getFilename={getFilename}></Editor>
             </div>
         </div>
     )
