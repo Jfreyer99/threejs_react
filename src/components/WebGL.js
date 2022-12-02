@@ -1,41 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import uuid from 'react-uuid';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, TransformControls, Environment } from '@react-three/drei';
 
-import Box from './Box'
-import Model from './GLTF_Model'
 import Plane from './Plane'
+import Model from './GLTF_Model'
 
-const WebGL = ({ filenameObj, shapesOnCanvas, setShapesOnCanvas }) => {
+const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh }) => {
 
     const [mode, setMode] = useState('translate');
-
-    const [currentMesh, setCurrentMesh] = useState();
-
-    const getMesh = (mesh) => {
-        if (mesh !== currentMesh) {
-            setCurrentMesh(mesh);
-            transformControls.current.attach(mesh.current)
-        }
-    }
-
     const [cameraPosition, setCameraPosition] = useState([5, 5, 5]);
+
+    const orbitControls = useRef();
+    const transformControls = useRef();
 
     useEffect(() => {
         setShapesOnCanvas([...shapesOnCanvas]);
     }, [])
 
     useEffect(() => {
-        //Construct Model here
-        if (filenameObj.filename !== '') {
-            const name = filenameObj.filename.split('/').pop().split('.')[0];
-            setShapesOnCanvas([...shapesOnCanvas, <Model position={[0, 1.4, 0]} key={uuid()} name={name} getMesh={getMesh} filename={filenameObj.filename}></Model>]);
+        if (shapesOnCanvas.length === 0 && transformControls.current !== undefined) {
+            transformControls.current.detach();
         }
-    }, [filenameObj])
-
-    const orbitControls = useRef();
-    const transformControls = useRef();
+    }, [shapesOnCanvas])
 
     const getMode = (e) => {
         switch (e.key) {
@@ -51,13 +38,12 @@ const WebGL = ({ filenameObj, shapesOnCanvas, setShapesOnCanvas }) => {
 
     const clickOnCanvas = (e) => {
         if (e.detail === 2) {
-            setCurrentMesh(null);
             transformControls.current.detach();
         }
     }
 
     const objectChanged = (e) => {
-        console.log(e.target.position);
+        //console.log(e.target.position);
     }
 
     return (
@@ -72,7 +58,7 @@ const WebGL = ({ filenameObj, shapesOnCanvas, setShapesOnCanvas }) => {
 
             <gridHelper args={[8, 8]}></gridHelper>
             <Plane></Plane>
-            <Model key={uuid()} receiveShadow castShadow getMesh={getMesh} filename='/course_standard.gltf'></Model>
+            <Model key={uuid()} receiveShadow castShadow filename='/course_standard.gltf'></Model>
             <directionalLight position-y={5} position-z={10} position-x={10} castShadow shadow-mapSize-height={512}
                 shadow-mapSize-width={512} intensity={1} />
             <OrbitControls
@@ -85,7 +71,7 @@ const WebGL = ({ filenameObj, shapesOnCanvas, setShapesOnCanvas }) => {
             {[...shapesOnCanvas]}
 
             <Environment preset="forest" background blur={0.5} />
-            <TransformControls translationSnap={0.05} rotationSnap={Math.PI / 16} onObjectChange={(e) => objectChanged(e)} ref={transformControls} mode={mode} />
+            <TransformControls object={currentMesh} translationSnap={0.05} rotationSnap={Math.PI / 16} onObjectChange={(e) => objectChanged(e)} ref={transformControls} mode={mode} />
         </Canvas >
     );
 }

@@ -1,14 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei'
 
-const Model = ({ getMesh, filename, name, position }) => {
+const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups }) => {
+
     const group = useRef(null);
     const [geometrys, setGeometrys] = useState([]);
     const [material, setMaterial] = useState([]);
 
+    useEffect(() => {
+        if (groups !== undefined) {
+            setGroups([...groups, group]);
+        }
+    }, [group])
+
     const click = (e) => {
         if (filename !== '/course_standard.gltf') {
-            getMesh(group);
+            getMeshOnClick(group);
         }
     }
 
@@ -25,7 +32,7 @@ const Model = ({ getMesh, filename, name, position }) => {
     if (arrayNodes.length === 1) { geometrys[0].center(); }
 
     return (
-        <group castShadow receiveShadow position={position} onClick={(e) => click(e)} ref={group} dispose={null}>
+        <group number={id} castShadow receiveShadow position={position} onClick={(e) => click(e)} ref={group} dispose={null}>
             {geometrys.map((geo, index) =>
                 <mesh castShadow receiveShadow key={index} geometry={geo} material={material[index]} rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
                 </mesh>

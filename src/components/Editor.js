@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import pyramid from './../assets/pyramid.png'
 import wallWithHole from './../assets/wall_with_hole.png'
 import ring from './../assets/ring.png'
@@ -10,18 +10,32 @@ import ramp from './../assets/ramp.png'
 import windmill from './../assets/windmill.png'
 import EditorObstacle from './EditorObstacle';
 
-const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas }) => {
+
+const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh, groups, setGroups }) => {
 
     const obstacleClick = (obj) => {
         getFilename(obj);
     }
 
-    const deleteObstacle = (e, key) => {
-        if (e.detail === 2) {
+    const onObstacleClick = (e, key) => {
+        if (e.detail === 1) {
+            const selectedMesh = groups.filter(ele => ele.current.number === key).pop().current;
+            setCurrentMesh(selectedMesh);
+        }
+        else if (e.detail === 2) {
+            //Delete Shape on Canvas
             const obstacleNew = shapesOnCanvas.filter(ele => ele.key !== key);
             setShapesOnCanvas(obstacleNew);
+
+            //Delete Group from state
+            const meshToRemove = groups.filter(ele => ele.current.number === key)[0].current;
+            const meshesNew = groups.filter(ele => ele.current !== meshToRemove);
+            setGroups(meshesNew);
+            console.log(meshesNew[meshesNew.length - 1]);
+            setCurrentMesh(meshesNew[meshesNew.length - 1]);
         }
     }
+
     const getImageFromName = (name) => {
         switch (name) {
             case 'wall_with_hole':
@@ -61,7 +75,7 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas }) => {
             <div id='obstaclesInScene'>
                 {shapesOnCanvas.map(
                     ele =>
-                        <div key={ele.key} className='obstacleOnCanvas' onClick={(e) => deleteObstacle(e, ele.key)}>
+                        <div key={ele.key} className={'obstacleOnCanvas'} onClick={(e) => onObstacleClick(e, ele.key)}>
                             <div className='obstacleWrapper'>
                                 <img className='obstacleImage' src={getImageFromName(ele.props.name)}></img>
                                 <div className='obstacleName'> {ele.props.name} </div>
