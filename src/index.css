@@ -102,6 +102,11 @@ background-color: #000000;
     margin-top: 20px;
 }
 
+.selected{
+  border: 3px solid rgb(255, 103, 103);
+  border-radius: 0px 0px 10px 10px;
+}
+
 .obstacleImage{
   user-select: none;
   width: 100%;

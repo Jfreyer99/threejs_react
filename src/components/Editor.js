@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import pyramid from './../assets/pyramid.png'
 import wallWithHole from './../assets/wall_with_hole.png'
 import ring from './../assets/ring.png'
@@ -8,10 +8,18 @@ import hut from './../assets/hut.png'
 import pillar from './../assets/pillar.png'
 import ramp from './../assets/ramp.png'
 import windmill from './../assets/windmill.png'
+import { useSpring, animated } from '@react-spring/web'
+import { useDrag } from '@use-gesture/react'
+
+
 import EditorObstacle from './EditorObstacle';
+import EditorObstacleInScene from './EditorObstacleInScene';
 
 
 const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh, groups, setGroups }) => {
+
+
+    const obstaclesInScene = [];
 
     const obstacleClick = (obj) => {
         getFilename(obj);
@@ -74,16 +82,15 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
                 <EditorObstacle name='Windmill' getObstacle={obstacleClick} img={windmill} filename='/obstacels/windmill.gltf'></EditorObstacle>
             </div>
             <div id='obstaclesInScene'>
-                {shapesOnCanvas.map(
-                    ele =>
-                        <div key={ele.key} className={'obstacleOnCanvas'} onClick={(e) => onObstacleClick(e, ele.key)}>
-                            <div className='obstacleWrapper'>
-                                <img className='obstacleImage' src={getImageFromName(ele.props.name)}></img>
-                                <div className='obstacleName'> {ele.props.name} </div>
-                            </div>
-                        </div>)}
+                {shapesOnCanvas.forEach(
+                    ele => obstaclesInScene.push(
+                        <EditorObstacleInScene img={getImageFromName(ele.props.name)} id={ele.props.id} name={ele.props.name} onObstacleClick={onObstacleClick}>
+                        </EditorObstacleInScene>))
+                }
+                {obstaclesInScene}
             </div>
         </>
     )
 }
 export default Editor
+//<EditorObstacleInScene img={getImageFromName(ele.props.name)} key={ele.props.id} name={ele.props.name} onObstacleClick={onObstacleClick}></EditorObstacleInScene>

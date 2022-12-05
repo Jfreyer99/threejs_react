@@ -8,9 +8,9 @@ const Plane = () => {
 
     return (
 
-        <mesh reveiceShadow rotation-x={- Math.PI / 2} position={[0, -0.01, 0]}>
-            <planeBufferGeometry attach="geometry" args={[10, 10]} />
-            <meshPhysicalMaterial map={texture} />
+        <mesh rotation-x={-Math.PI / 2} receiveShadow>
+            <boxGeometry attach="geometry" args={[8, 8, 0.2]} />
+            <meshPhongMaterial attach="material" color="grey" />
         </mesh>
 
     );

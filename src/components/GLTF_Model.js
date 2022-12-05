@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei'
-
-const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups }) => {
+import * as THREE from 'three'
+const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups, castShadow, receiveShadow }) => {
 
     const group = useRef(null);
     const [geometrys, setGeometrys] = useState([]);
@@ -25,16 +25,29 @@ const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups
     const arrayNodes = Object.values(nodes)
 
     for (let ele of arrayNodes) {
+        ele.geometry.computeVertexNormals();
         geometrys.push(ele.geometry);
         material.push(ele.material);
     }
 
     if (arrayNodes.length === 1) { geometrys[0].center(); }
 
+
     return (
-        <group number={id} castShadow receiveShadow position={position} onClick={(e) => click(e)} ref={group} dispose={null}>
+        <group number={id} position={position} onClick={(e) => click(e)} ref={group} dispose={null}>
             {geometrys.map((geo, index) =>
-                <mesh castShadow receiveShadow key={index} geometry={geo} material={material[index]} rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
+                <mesh
+                    castShadow={castShadow}
+                    receiveShadow={receiveShadow}
+                    key={index}
+                    geometry={geo}
+                    // material={
+                    //     new THREE.MeshPhongMaterial({ color: 'lime', flatShading: true })
+                    // }
+                    material={material[index]}
+                    rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
+                    {/* <meshPhongMaterial attach="material" color="green" /> */}
+                    {/* <boxGeometry /> */}
                 </mesh>
             )}
         </group>

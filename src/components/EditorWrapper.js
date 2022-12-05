@@ -20,10 +20,11 @@ const EditorWrapper = () => {
     useEffect(() => {
         //Construct Model here
         if (currentFileName.filename !== '') {
+
             const name = currentFileName.filename.split('/').pop().split('.')[0];
             const id = uuid();
             setShapesOnCanvas([...shapesOnCanvas,
-            <Model position={[0, 1.4, 0]} id={id} groups={groups} setGroups={setGroups} key={id} name={name} getMeshOnClick={getMeshOnClick} filename={currentFileName.filename}></Model>]);
+            <Model receiveShadow={true} castShadow={true} position={[0, 1.4, 0]} id={id} groups={groups} setGroups={setGroups} key={id} name={name} getMeshOnClick={getMeshOnClick} filename={currentFileName.filename}></Model>]);
         }
     }, [currentFileName])
 
@@ -34,7 +35,7 @@ const EditorWrapper = () => {
     return (
         <div id="editorWrapper">
             <div id="webgl">
-                <WebGL currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas}></WebGL>
+                <WebGL groups={groups} currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas}></WebGL>
             </div>
             <div id="editor">
                 <Editor groups={groups} setGroups={setGroups} currentMesh={currentMesh} setCurrentMesh={setCurrentMesh} shapesOnCanvas={shapesOnCanvas} setShapesOnCanvas={setShapesOnCanvas} getFilename={getFilename}></Editor>

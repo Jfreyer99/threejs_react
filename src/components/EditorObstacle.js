@@ -1,4 +1,9 @@
+import React, { useState } from 'react'
+import { useSpring, animated } from '@react-spring/web'
+import { useDrag } from '@use-gesture/react'
+
 const EditorObstacle = ({ filename, name, img, getObstacle }) => {
+
 
     const obstacleClick = (event, filename) => {
         getObstacle({ filename: filename, event: event });
