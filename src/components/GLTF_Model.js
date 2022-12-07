@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei'
-import * as THREE from 'three'
-const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups, castShadow, receiveShadow }) => {
+const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups, castShadow, receiveShadow, scale }) => {
+
 
     const group = useRef(null);
     const [geometrys, setGeometrys] = useState([]);
@@ -9,13 +9,13 @@ const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups
 
     useEffect(() => {
         if (groups !== undefined) {
-            setGroups([...groups, group]);
+            setGroups([...groups, group.current]);
         }
     }, [group])
 
     const click = (e) => {
         if (filename !== '/course_standard.gltf') {
-            getMeshOnClick(group);
+            getMeshOnClick(group.current);
         }
     }
 
@@ -41,11 +41,8 @@ const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups
                     receiveShadow={receiveShadow}
                     key={index}
                     geometry={geo}
-                    // material={
-                    //     new THREE.MeshPhongMaterial({ color: 'lime', flatShading: true })
-                    // }
                     material={material[index]}
-                    rotation={[-Math.PI / 2, 0, 0]} scale={[7, 7, 7]}>
+                    rotation={[-Math.PI / 2, 0, 0]} scale={scale}>
                     {/* <meshPhongMaterial attach="material" color="green" /> */}
                     {/* <boxGeometry /> */}
                 </mesh>

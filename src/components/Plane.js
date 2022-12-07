@@ -4,7 +4,7 @@ import { useTexture } from '@react-three/drei';
 
 const Plane = () => {
 
-    const texture = useTexture(planeTexture);
+    //const texture = useTexture(planeTexture);
 
     return (
 

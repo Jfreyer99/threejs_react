@@ -27,7 +27,7 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
 
     const onObstacleClick = (e, key) => {
         if (e.detail === 1) {
-            const selectedMesh = groups.filter(ele => ele.current.number === key).pop().current;
+            const selectedMesh = groups.filter(ele => ele.number === key).pop();
             setCurrentMesh(selectedMesh);
         }
         else if (e.detail === 2) {
@@ -36,12 +36,14 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
             setShapesOnCanvas(obstacleNew);
 
             //Delete Group from state
-            const meshToRemove = groups.filter(ele => ele.current.number === key)[0].current;
-            const meshesNew = groups.filter(ele => ele.current !== meshToRemove);
+            const meshToRemove = groups.filter(ele => ele.number === key)[0];
+            const meshesNew = groups.filter(ele => ele !== meshToRemove);
             setGroups(meshesNew);
 
             //Set new currentMesh
-            setCurrentMesh(meshesNew[meshesNew.length - 1]);
+            if (meshesNew.length - 1 !== undefined) {
+                setCurrentMesh(meshesNew[meshesNew.length - 1]);
+            }
         }
     }
 
@@ -68,6 +70,11 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
         }
     }
 
+    shapesOnCanvas.forEach(
+        ele => obstaclesInScene.push(
+            <EditorObstacleInScene key={ele.props.id} img={getImageFromName(ele.props.name)} id={ele.props.id} name={ele.props.name} onObstacleClick={onObstacleClick}>
+            </EditorObstacleInScene>))
+
     return (
         <>
             <div id='obstacleList'>
@@ -82,11 +89,6 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
                 <EditorObstacle name='Windmill' getObstacle={obstacleClick} img={windmill} filename='/obstacels/windmill.gltf'></EditorObstacle>
             </div>
             <div id='obstaclesInScene'>
-                {shapesOnCanvas.forEach(
-                    ele => obstaclesInScene.push(
-                        <EditorObstacleInScene img={getImageFromName(ele.props.name)} id={ele.props.id} name={ele.props.name} onObstacleClick={onObstacleClick}>
-                        </EditorObstacleInScene>))
-                }
                 {obstaclesInScene}
             </div>
         </>
