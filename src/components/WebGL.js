@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, Suspense } from 'react';
 import uuid from 'react-uuid';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { MathUtils } from 'three'
+import { Canvas } from '@react-three/fiber';
 import { useControls } from 'leva'
-import * as THREE from 'three'
 import { OrbitControls, TransformControls, Environment, Stats, PerspectiveCamera } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, Glitch, Pixelation, SSAO, Grid, HueSaturation, ToneMapping } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
@@ -16,7 +14,6 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
 
     const [mode, setMode] = useState('translate');
 
-    const orbitControls = useRef();
     const transformControls = useRef();
 
     useEffect(() => {
@@ -36,13 +33,15 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
     }, [groups])
 
 
-    const getMode = (e) => {
+    const getModeOrReset = (e) => {
         switch (e.key) {
             case 's': setMode('scale');
                 break;
             case 'g': setMode('translate');
                 break;
             case 'r': setMode('rotate');
+                break;
+            case 'v': transformControls.current.reset();
                 break;
             default: return;
         }
@@ -60,7 +59,7 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
             shadows
             id="canvas"
             tabIndex="-1"
-            onKeyDown={(e) => getMode(e)}
+            onKeyDown={(e) => getModeOrReset(e)}
             onClick={(e) => clickOnCanvas(e)}
         >
 
@@ -70,7 +69,7 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
             {[...shapesOnCanvas]}
             <Environment preset="forest" background blur={0.5} />
             <PerspectiveCamera fov={70} position={[5, 5, 5]} makeDefault />
-            <Control ref={orbitControls} currentMesh={currentMesh} />
+            <Control currentMesh={currentMesh} />
             <TransformControls object={currentMesh} translationSnap={0.01} rotationSnap={Math.PI / 16} ref={transformControls} mode={mode} />
         </Canvas >
 

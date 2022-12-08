@@ -8,8 +8,6 @@ import hut from './../assets/hut.png'
 import pillar from './../assets/pillar.png'
 import ramp from './../assets/ramp.png'
 import windmill from './../assets/windmill.png'
-import { useSpring, animated } from '@react-spring/web'
-import { useDrag } from '@use-gesture/react'
 
 
 import EditorObstacle from './EditorObstacle';

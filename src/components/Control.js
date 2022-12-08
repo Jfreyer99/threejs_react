@@ -4,8 +4,9 @@ import { useFrame } from '@react-three/fiber';
 import { MathUtils } from 'three'
 import * as THREE from 'three'
 
-const Control = React.forwardRef(({ currentMesh }, ref) => {
+const Control = ({ currentMesh }) => {
 
+    const ref = useRef();
 
     useFrame(() => {
         if (currentMesh !== null && currentMesh !== undefined) {
@@ -25,7 +26,11 @@ const Control = React.forwardRef(({ currentMesh }, ref) => {
     });
 
     return <OrbitControls
-        maxZoom={100}
+        minDistance={1}
+        maxDistance={10}
+        enableDamping={true}
+        dampingFactor={0.3}
+        rotateSpeed={0.4}
         minAzimuthAngle={undefined}
         maxAzimuthAngle={undefined}
         minPolarAngle={-Math.PI}
@@ -34,6 +39,6 @@ const Control = React.forwardRef(({ currentMesh }, ref) => {
         makeDefault={true}
     >
     </OrbitControls>
-})
+}
 
 export default Control

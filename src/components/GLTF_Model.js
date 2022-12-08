@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei'
-const Model = ({ getMeshOnClick, filename, name, position, id, groups, setGroups, castShadow, receiveShadow, scale }) => {
+const Model = ({ getMeshOnClick, filename, position, id, groups, setGroups, castShadow, receiveShadow, scale }) => {
 
 
     const group = useRef(null);

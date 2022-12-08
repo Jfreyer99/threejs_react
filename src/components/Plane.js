@@ -1,10 +1,6 @@
 import React from 'react';
-import planeTexture from './../assets/planeTexture.jpg'
-import { useTexture } from '@react-three/drei';
 
 const Plane = () => {
-
-    //const texture = useTexture(planeTexture);
 
     return (
 
