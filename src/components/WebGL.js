@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, Suspense } from 'react';
 import uuid from 'react-uuid';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, ReactThreeFiber } from '@react-three/fiber';
+import * as THREE from 'three'
 import { useControls } from 'leva'
 import { OrbitControls, TransformControls, Environment, Stats, PerspectiveCamera } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, Glitch, Pixelation, SSAO, Grid, HueSaturation, ToneMapping } from '@react-three/postprocessing'
@@ -62,15 +63,20 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
             onKeyDown={(e) => getModeOrReset(e)}
             onClick={(e) => clickOnCanvas(e)}
         >
-
             <Plane></Plane>
             <Model receiveShadow={true} castShadow={true} key={uuid()} scale={[7, 7, 7]} filename='/course_standard.gltf'></Model>
             <directionalLight position-x={-100} position-y={100} position-z={-100} castShadow receiveShadow intensity={1.3} />
             {[...shapesOnCanvas]}
+
+            <EffectComposer>
+                <Bloom luminanceThreshold={0.3} luminanceSmoothing={0.8} resolution={{ width: 256, height: 256 }} />
+            </EffectComposer>
+
             <Environment preset="forest" background blur={0.5} />
             <PerspectiveCamera fov={70} position={[5, 5, 5]} makeDefault />
             <Control currentMesh={currentMesh} />
             <TransformControls object={currentMesh} translationSnap={0.01} rotationSnap={Math.PI / 16} ref={transformControls} mode={mode} />
+
         </Canvas >
 
     );
