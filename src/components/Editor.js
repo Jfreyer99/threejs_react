@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import pyramid from './../assets/pyramid.png'
 import wallWithHole from './../assets/wall_with_hole.png'
 import ring from './../assets/ring.png'
@@ -18,6 +19,7 @@ const Editor = ({ getFilename, shapesOnCanvas, setShapesOnCanvas, currentMesh, s
 
 
     const obstaclesInScene = [];
+
 
     const obstacleClick = (obj) => {
         getFilename(obj);

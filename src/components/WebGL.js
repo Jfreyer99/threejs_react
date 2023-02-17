@@ -69,8 +69,8 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
                 position-z={-100}
                 castShadow
                 intensity={1.3}
-                shadow-mapSize-width={512}
-                shadow-mapSize-height={512}
+                shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
             />
 
             <Plane></Plane>
@@ -78,7 +78,7 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
             {[...shapesOnCanvas]}
 
             <EffectComposer>
-                <Bloom luminanceThreshold={0.3} luminanceSmoothing={0.8} resolution={{ width: 256, height: 256 }} />
+                <Bloom luminanceThreshold={0.3} luminanceSmoothing={0.8} />
             </EffectComposer>
 
 
