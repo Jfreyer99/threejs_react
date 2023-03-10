@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Editor from './Editor'
 import WebGL from './WebGL'
-import uuid from 'react-uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Model from './GLTF_Model'
 
 const EditorWrapper = () => {
@@ -21,7 +21,7 @@ const EditorWrapper = () => {
         //Construct Model here
         if (currentFileName.filename !== '') {
             const name = currentFileName.filename.split('/').pop().split('.')[0];
-            const id = uuid();
+            const id = uuidv4();
             setShapesOnCanvas([...shapesOnCanvas,
             <Model receiveShadow={true} castShadow={true} scale={[7, 7, 7]} position={[0, 1.4, 0]} id={id} groups={groups} setGroups={setGroups} key={id} name={name} getMeshOnClick={getMeshOnClick} filename={currentFileName.filename}></Model>]);
         }

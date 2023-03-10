@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, Suspense } from 'react';
-import uuid from 'react-uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { Canvas, ReactThreeFiber } from '@react-three/fiber';
 import * as THREE from 'three'
 import { useControls } from 'leva'
@@ -74,7 +74,7 @@ const WebGL = ({ shapesOnCanvas, setShapesOnCanvas, currentMesh, setCurrentMesh,
             />
 
             <Plane></Plane>
-            <Model receiveShadow={true} castShadow={true} key={uuid()} scale={[7, 7, 7]} filename='/course_standard.gltf'></Model>
+            <Model receiveShadow={true} castShadow={true} key={uuidv4()} scale={[7, 7, 7]} filename='/course_standard.gltf'></Model>
             {[...shapesOnCanvas]}
 
             <EffectComposer>
